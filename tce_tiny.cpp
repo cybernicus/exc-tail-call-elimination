@@ -1,8 +1,9 @@
 /* tce_tiny.cpp
  *
- * Stripped down version of the tail-call-elimination.cpp demo program
- * but keeping only the fast (array) version.
+ * Stripped down version of my larger tail-call-elimination.cpp demo/benchmark
+ * program, using only the scheme I chose to use in the VM.
  *
+ * MCM 20160131 - original version
  */
 #include <stdio.h>
 #include <chrono>

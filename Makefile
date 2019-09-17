@@ -9,8 +9,10 @@ CC_TCE= -foptimize-sibling-calls
 CC_NTCE= -fno-optimize-sibling-calls
 LD_FL = -lstdc++
 
+TARGETS=tce_tiny_slow.exe tce_tiny_fast.exe tce_tiny_fast.S tce_tiny_slow.S
+
 # By default, build everything
-all: tce_tiny_slow.exe tce_tiny_fast.exe tce_tiny_fast.S tce_tiny_slow.S
+all: $(TARGETS)
 
 # The slow version with no optimization
 
@@ -31,5 +33,5 @@ tce_tiny_fast.S: tce_tiny.cpp Makefile
 # I use cygwin under windows, linux and a Mac, so I can get EXE files as well
 # as normal *nix executables.
 clean:
-	rm -f tce_tiny_fast.exe tce_tine_slow.exe tce_tiny.S
+	rm -f $(TARGETS) *.exe.stackdump
 

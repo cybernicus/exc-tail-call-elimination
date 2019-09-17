@@ -11,6 +11,10 @@ LD_FL = -lstdc++
 tce_tiny: tce_tiny.cpp Makefile
 	$(CC) $(CC_FL) $(CC_TCE) tce_tiny.cpp -o tce_tiny $(LD_FL)
 
+# You might want to view the generated assembler, so here's your target
+tce_tiny.S: tce_tiny.cpp Makefile
+	$(CC) $(CC_FL) -S $(CC_TCE) tce_tiny.cpp -o tce_tiny.S
+
 # I use cygwin under windows, linux and a Mac, so I can get EXE files as well
 # as normal *nix executables.
 clean:

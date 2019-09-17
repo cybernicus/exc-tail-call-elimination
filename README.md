@@ -16,8 +16,7 @@ in future projects.
 
 OVERVIEW
 
-
-Overview: In a virtual machine, you build a 'simulated computer' with opcodes
+In a virtual machine, you build a 'simulated computer' with opcodes
 that simplify the expression of the low-level concepts you're trying to work
 with.  That lets you simplify your compiler a good deal, and make good tradeoffs
 between expressibility and performance in the end.

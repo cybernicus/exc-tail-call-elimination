@@ -1,0 +1,13 @@
+# .gitignore - junk we don't want to litter our repo with
+
+# vim swap files, compiled versions
+*.swp
+*.exe
+
+# I tend to use a prefix of t. or t_ for junk files (intermediate/temp files)
+# and ttt*, uuu* for console logs
+ttt*
+uuu*
+t.*
+t_*
+

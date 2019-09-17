@@ -214,9 +214,10 @@ and off, I've set PGM_SIZE and PGM_LOOPS to 100 and 10 respectively.
 This gives me the following results in a desktop PC running Windows 8.1
 on an i5-4670K CPU:
 
-|    |# ins|  # ins/sec|wall-clock time
-|slow|1111 | 44,443,555|0.026s
-|fast|1111 |409,811,877|0.023s
+|      |# ins |   # ins/sec |wall-clock time |
+|:----:|-----:| -----------:|---------------:|
+|slow  | 1111 |  44,443,555 |0.026s          |
+|fast  | 1111 | 409,811,877 |0.023s          |
 
 So the tail-call elimination optimization gives us a nearly 10 times
 speedup.  Note: the opcodes run didn't do much, so it doesn't mean that

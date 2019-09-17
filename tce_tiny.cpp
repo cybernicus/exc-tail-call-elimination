@@ -41,6 +41,9 @@ enum flags {
 
 //==================== VIRTUAL MACHINE OPCODE HANDLERS ======================
 
+#define PGM_SIZE    10000
+#define PGM_LOOPS   100000
+
 // I currently don't care to implement a bunch of actual opcodes, so I'm just
 // throwing some ugly bits together as an example.
 int f1, f2, f3, f4;
@@ -64,7 +67,7 @@ void func3(void) {
 // over 100K times.  Otherwise, it goes back to the first instruction.
 void func4(void) {
     ++f4;
-    if (f4>100000)
+    if (f4>PGM_LOOPS)
         return;
     OPARRAY[IP=0]();
 }
@@ -76,12 +79,12 @@ int main(int, char**) {
     // opcodes, finishing off with a func4() at the end.  Thus it turns into
     // a program that increments the f1, f2, and f3 variables a number of
     // times, and f4 at the end of the program, making it loop 100K times.
-    for (int i=0; i<10000; ++i) {
+    for (int i=0; i<PGM_SIZE; ++i) {
         if (i%17==0) { OPARRAY[i]=&func3; }
         else if (i%13) { OPARRAY[i]=&func2; }
         else {OPARRAY[i]=&func1; }
     }
-    OPARRAY[10000]=&func4;
+    OPARRAY[PGM_SIZE]=&func4;
     puts("BOOM!");
     IP=0;
     steady_clock::time_point start = std::chrono::steady_clock::now();

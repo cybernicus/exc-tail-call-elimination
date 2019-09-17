@@ -203,6 +203,49 @@ themselve something like this:
         OPARRAY[IP]();
     }
 
+RESULTS
+
+I created a stupid program to let you see the performance difference
+you get when tail-call elimination is on or off.  However, since the
+program is executed as a *very deep* recursive function without tail-call
+elimination, you need to run with very small values of PGM_SIZE and
+PGM_LOOPS.  So for showing the difference between the optimization on
+and off, I've set PGM_SIZE and PGM_LOOPS to 100 and 10 respectively.
+This gives me the following results in a desktop PC running Windows 8.1
+on an i5-4670K CPU:
+
+        # ins       # ins/sec       wall-clock time
+slow:   1111        44,443,555       0.026s
+fast:   1111       409,811,877       0.023s
+
+So the tail-call elimination optimization gives us a nearly 10 times
+speedup.  Note: the opcodes run didn't do much, so it doesn't mean that
+it made my virtual machine 10 times faster.  Instead it reduced the
+amount of overhead dramatically.  So while my VM wasn't 10 times faster,
+it was still *quite* a lot faster after I made this optimization.
+
+With the default values of PGM_SIZE=10000 and PGM_LOOPS=100000, running
+the fast version gives the following output, showing that the opcode
+overhead is low enough to get nearly 550 million opcodes per second:
+
+    $ time ./tce_tiny_fast.exe
+    BOOM!
+    KERBLAM! IP:10000, f1:72400724, f2:868708687, f3:58900589, f4:100001
+    1.822515 seconds
+    instructions executed: 1000110001, instructions/second: 548752670.054766
+
+    real    0m1.844s
+    user    0m1.828s
+    sys     0m0.015s
+
+The real-world results were pretty good in the actual VM.  The final version
+I ran, where the opcodes actually did significant work yielded just over
+8 million operations per second in the graph machine.  We were doing various
+stack operations, graph-trace operations, etc.  While some of those operations
+consumed a decent bit of work, there were enough 'simple' operations in most
+programs to make most programs hit the 8 million opcodes/sec mark, with few
+programs being much slower than that.
+
 
 NOTE: While it's a C example, my makefile specifies C++ '11.  Just a
 habit of mine--I pretty much always use C++ or C-style under C++.

@@ -246,6 +246,21 @@ consumed a decent bit of work, there were enough 'simple' operations in most
 programs to make most programs hit the 8 million opcodes/sec mark, with few
 programs being much slower than that.
 
+TO DO LIST:
+
+1)  This README is a bit long and rambly, so I should probably split
+    it up into a brief description of tail-call elimination in README,
+    and put the rest in a details/internals/other sort of document.
+2)  Might be fun to implement a few more opcodes so people can see
+    how you might construct a virtual machine.
+3)  If I do #2, then I should create a better test script so it can
+    actually do some computations and/or print something interesting.
+4)  Should document how to add debugging.  (Compile flag so that
+    Instead of having each opcode execute the *next* instruction, we
+    call the next() function which has a debug hook and cand then call
+    the next opcode.  Halves the throughput rate (since each opcode
+    would get the next() opcode executed afterwards, plus a little
+    more for the breakpoint test.
 
 NOTE: While it's a C example, my makefile specifies C++ '11.  Just a
 habit of mine--I pretty much always use C++ or C-style under C++.

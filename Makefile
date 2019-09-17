@@ -3,6 +3,8 @@
 # I don't use default rules in make, so if you have any difficulties building
 # this, try "make -r".  (I find things a little less surprising this way.)
 #
+# 20190917 added fast/slow exe/.S targets, $(TARGETS), updated clean target
+#
 CC    = clang
 CC_FL = -std=gnu++11 -O
 CC_TCE= -foptimize-sibling-calls

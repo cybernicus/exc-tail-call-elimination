@@ -13,7 +13,9 @@
  * build this refresher so I could recall all the important steps should I ever
  * need to use this optimization technique in another project.
  *
- * MCM 20190917 - added documentation so people can get a better feel for it
+ * MCM 20190917 - added documentation so people can get a better feel for it,
+ *      PGM_* variables to configure the test program so the slow version can
+ *      run without crashing the stack.
  * MCM 20160131 - original version
  */
 #include <stdio.h>
@@ -41,6 +43,10 @@ enum flags {
 
 //==================== VIRTUAL MACHINE OPCODE HANDLERS ======================
 
+// NOTE: The number of instructions executed by the trivial test program is
+// the product of these two values.  If you want to run the slow version, the
+// stack will overflow with the values shown.  Using 100 and 10 below is what
+// I used for the "RESULTS" section in the README.md.
 #define PGM_SIZE    10000
 #define PGM_LOOPS   100000
 
